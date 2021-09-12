@@ -7,7 +7,9 @@ var secondaryContentEl = document.querySelector("secondary-content");
 var tertiaryContentEl = document.querySelector("tertiary-content");
 var startBtnEl = document.querySelector(".start");
 var timeRemaining = 90
-var timeInterval = setInterval(function() {
+var timeInterval;
+function timerStart() {
+    setInterval(function() {
     if (timeRemaining > 1) {
         timerDurationEl.textContent = timeRemaining;
         timeRemaining--;
@@ -18,4 +20,6 @@ var timeInterval = setInterval(function() {
         timerDurationEl.textContent = '';
         clearInterval(timeInterval)
     }
-}, 1000);
+    }, 1000);
+}
+startBtnEl.addEventListener("click",timerStart);
