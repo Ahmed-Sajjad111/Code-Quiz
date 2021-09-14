@@ -54,7 +54,7 @@ var questions = [
 ]
 
 // function to remove instruction page and display questions
-function questionsStart() {
+function removeStarterElements() {
     //remove current contents of page
     pageTitleEl.remove();
     pageContentEl.remove();
@@ -62,29 +62,31 @@ function questionsStart() {
 
     //set up container to display questions
     secondaryContentEl.setAttribute('id', 'question-format')
+}
 
+function question1() {
     //question 1
     var question1El = document.createElement("h1");
     question1El.textContent = questions[0].question;
     question1El.setAttribute('id', 'questions');
     mainContentEl.appendChild(question1El);
-
+    
     //answers to question 1
     var question1A = document.createElement("button");
     question1A.textContent = questions[0].answer1;
     question1A.setAttribute('class', 'answer-button')
     secondaryContentEl.appendChild(question1A);
-
+    
     var question1B = document.createElement("button");
     question1B.textContent = questions[0].answer2;
     question1B.setAttribute('class', 'answer-button')
     secondaryContentEl.appendChild(question1B);
-
+    
     var question1C = document.createElement("button");
     question1C.textContent = questions[0].answer3;
     question1C.setAttribute('class', 'answer-button')
     secondaryContentEl.appendChild(question1C);
-
+    
     var question1D = document.createElement("button");
     question1D.textContent = questions[0].answer4;
     question1D.setAttribute('class', 'answer-button')
@@ -105,6 +107,7 @@ function quizStart() {
     }
     }, 1000);
 
-    questionsStart();
+    removeStarterElements();
+    question1();
 }
 startBtnEl.addEventListener("click",quizStart);
