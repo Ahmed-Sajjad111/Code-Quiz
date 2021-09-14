@@ -3,9 +3,9 @@ var highScoreEl = document.querySelector(".high-score");
 var timerDurationEl = document.querySelector(".timer-duration");
 var pageContentEl = document.querySelector(".page-content");
 var mainContentEl = document.querySelector(".main-content");
-var pageTitleEl = document.querySelector(".title");
+var titleEl = document.querySelector(".title");
 var secondaryContentEl = document.querySelector(".secondary-content");
-var pageContentEl = document.querySelector(".content");
+var contentEl = document.querySelector(".content");
 var tertiaryContentEl = document.querySelector(".tertiary-content");
 var startBtnEl = document.querySelector(".start");
 var timeRemaining = 90
@@ -56,8 +56,8 @@ var questions = [
 // function to remove instruction page and display questions
 function removeStarterElements() {
     //remove current contents of page
-    pageTitleEl.remove();
-    pageContentEl.remove();
+    titleEl.remove();
+    contentEl.remove();
     startBtnEl.remove();
 
     //set up container to display questions
