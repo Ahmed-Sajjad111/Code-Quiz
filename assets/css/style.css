@@ -89,7 +89,7 @@ main {
     text-align: start;
 }
 
-.answer-button {
+.answer-buttonA, .answer-buttonB, .answer-buttonC, .answer-buttonD {
     height: 40px;
     width: 200px;
     text-align: start;
@@ -102,8 +102,15 @@ main {
     padding-left: 15px;
 }
 
-.answer-button:focus {
+.answer-buttonA:focus, .answer-buttonB:focus, .answer-buttonC:focus, .answer-buttonD:focus {
     background-color: var(--tertiary-color);
+}
+
+.response {
+    color: rgb(88, 88, 88);
+    text-align: left;
+    border-top: 2px solid gray;
+    margin-top: 10px;
 }
 
 .final-score {

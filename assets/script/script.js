@@ -10,7 +10,15 @@ var secondaryContentEl = document.querySelector(".secondary-content");
 var contentEl = document.querySelector(".content");
 var tertiaryContentEl = document.querySelector(".tertiary-content");
 var startBtnEl = document.querySelector(".start");
+var answerFeedback;
+var responseContainer = document.createElement("div")
+footerEl.appendChild(responseContainer)
+var response = document.createElement("h1")
+response.setAttribute("class","response")
+response.textContent = answerFeedback
+responseContainer.appendChild(response);
 var timeRemaining = 90
+var finalScore;
 var timeInterval;
 var questions = [
     {
@@ -71,7 +79,9 @@ function removeStarterElements() {
     secondaryContentEl.setAttribute('id', 'question-format')
 }
 
+
 function question1() {
+    
     //question 1
     var questionEl = document.createElement("h1");
     questionEl.textContent = questions[0].text;
@@ -81,35 +91,65 @@ function question1() {
     //answers to question 1
     var question1A = document.createElement("button");
     question1A.textContent = questions[0].answer1;
-    question1A.setAttribute('class', 'answer-button')
+    question1A.setAttribute('class', 'answer-buttonA')
+    question1A.setAttribute('data-correct-answer', "A")
     secondaryContentEl.appendChild(question1A);
     
     var question1B = document.createElement("button");
     question1B.textContent = questions[0].answer2;
-    question1B.setAttribute('class', 'answer-button')
+    question1B.setAttribute('class', 'answer-buttonB')
+    question1B.setAttribute('data-correct-answer', "B")
     secondaryContentEl.appendChild(question1B);
     
     var question1C = document.createElement("button");
     question1C.textContent = questions[0].answer3;
-    question1C.setAttribute('class', 'answer-button')
+    question1C.setAttribute('class', 'answer-buttonC')
+    question1C.setAttribute('data-correct-answer', "C")
     secondaryContentEl.appendChild(question1C);
     
     var question1D = document.createElement("button");
     question1D.textContent = questions[0].answer4;
-    question1D.setAttribute('class', 'answer-button')
+    question1D.setAttribute('class', 'answer-buttonD')
+    question1D.setAttribute('data-correct-answer', "D")
     secondaryContentEl.appendChild(question1D);
-
-    for (let i = 0; i < 4; i++) {
-        document.getElementsByClassName("answer-button")
-        [i].addEventListener("click" , () => {
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            questionEl.remove();
-            question2();
-        });
+    
+    function answerIncorrect() {
+        console.log("wrong")
+        question1A.remove();
+        question1B.remove();
+        question1C.remove();
+        question1D.remove();
+        questionEl.remove();
+        question2();
     }
+    
+    function answerCorrect() {
+        console.log("correct")
+        question1A.remove();
+        question1B.remove();
+        question1C.remove();
+        question1D.remove();
+        questionEl.remove();
+        question2();
+    }
+
+    question1A.addEventListener("click",answerIncorrect)
+    question1B.addEventListener("click",answerCorrect)
+    question1C.addEventListener("click",answerIncorrect)
+    question1D.addEventListener("click",answerIncorrect)
+    
+    // addEventListener("click" , () => {
+    //     // var clickedAnswer = this.document.querySelector(".answer-button")
+    //     // // console.log(clickedAnswer.dataset.correctAnswer)
+    //     // document.querySelector(".answer-button").remove();
+    //     questionEl.remove();
+    //     question2();
+    // });
+
+    // for (let i = 0; i < 4; i++) {
+    //     document.getElementsByClassName("answer-button")
+    //     [i].
+    // }
 }
 
 function question2() {
@@ -122,35 +162,60 @@ function question2() {
     //answers to question 2
     var question2A = document.createElement("button");
     question2A.textContent = questions[1].answer1;
-    question2A.setAttribute('class', 'answer-button')
+    question2A.setAttribute('class', 'answer-buttonA')
     secondaryContentEl.appendChild(question2A);
     
     var question2B = document.createElement("button");
     question2B.textContent = questions[1].answer2;
-    question2B.setAttribute('class', 'answer-button')
+    question2B.setAttribute('class', 'answer-buttonB')
     secondaryContentEl.appendChild(question2B);
     
     var question2C = document.createElement("button");
     question2C.textContent = questions[1].answer3;
-    question2C.setAttribute('class', 'answer-button')
+    question2C.setAttribute('class', 'answer-buttonC')
     secondaryContentEl.appendChild(question2C);
     
     var question2D = document.createElement("button");
     question2D.textContent = questions[1].answer4;
-    question2D.setAttribute('class', 'answer-button')
+    question2D.setAttribute('class', 'answer-buttonD')
     secondaryContentEl.appendChild(question2D);
 
-    for (let i = 0; i < 4; i++) {
-        document.getElementsByClassName("answer-button")
-        [i].addEventListener("click" , () => {
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            questionEl.remove();
-            question3();
-        });
+    function answerIncorrect() {
+        console.log("wrong")
+        question2A.remove();
+        question2B.remove();
+        question2C.remove();
+        question2D.remove();
+        questionEl.remove();
+        question3();
     }
+    
+    function answerCorrect() {
+        console.log("correct")
+        question2A.remove();
+        question2B.remove();
+        question2C.remove();
+        question2D.remove();
+        questionEl.remove();
+        question3();
+    }
+
+    question2A.addEventListener("click",answerIncorrect)
+    question2B.addEventListener("click",answerIncorrect)
+    question2C.addEventListener("click",answerCorrect)
+    question2D.addEventListener("click",answerIncorrect)
+
+    // for (let i = 0; i < 4; i++) {
+    //     document.getElementsByClassName("answer-button")
+    //     [i].addEventListener("click" , () => {
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         questionEl.remove();
+    //         question3();
+    //     });
+    // }
 }
 
 function question3() {
@@ -163,35 +228,61 @@ function question3() {
     //answers to question 3
     var question3A = document.createElement("button");
     question3A.textContent = questions[2].answer1;
-    question3A.setAttribute('class', 'answer-button')
+    question3A.setAttribute('class', 'answer-buttonA')
     secondaryContentEl.appendChild(question3A);
     
     var question3B = document.createElement("button");
     question3B.textContent = questions[2].answer2;
-    question3B.setAttribute('class', 'answer-button')
+    question3B.setAttribute('class', 'answer-buttonB')
     secondaryContentEl.appendChild(question3B);
     
     var question3C = document.createElement("button");
     question3C.textContent = questions[2].answer3;
-    question3C.setAttribute('class', 'answer-button')
+    question3C.setAttribute('class', 'answer-buttonC')
     secondaryContentEl.appendChild(question3C);
     
     var question3D = document.createElement("button");
     question3D.textContent = questions[2].answer4;
-    question3D.setAttribute('class', 'answer-button')
+    question3D.setAttribute('class', 'answer-buttonD')
     secondaryContentEl.appendChild(question3D);
 
-    for (let i = 0; i < 4; i++) {
-        document.getElementsByClassName("answer-button")
-        [i].addEventListener("click" , () => {
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            questionEl.remove();
-            question4();
-        });
+    function answerIncorrect() {
+        console.log("wrong")
+        question3A.remove();
+        question3B.remove();
+        question3C.remove();
+        question3D.remove();
+        questionEl.remove();
+        question4();
     }
+    
+    function answerCorrect() {
+        console.log("correct")
+        question3A.remove();
+        question3B.remove();
+        question3C.remove();
+        question3D.remove();
+        questionEl.remove();
+        question4();
+    }
+
+    question3A.addEventListener("click",answerIncorrect)
+    question3B.addEventListener("click",answerIncorrect)
+    question3C.addEventListener("click",answerIncorrect)
+    question3D.addEventListener("click",answerCorrect)
+
+
+    // for (let i = 0; i < 4; i++) {
+    //     document.getElementsByClassName("answer-button")
+    //     [i].addEventListener("click" , () => {
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         questionEl.remove();
+    //         question4();
+    //     });
+    // }
 }
 
 function question4() {
@@ -204,35 +295,60 @@ function question4() {
     //answers to question 4
     var question4A = document.createElement("button");
     question4A.textContent = questions[3].answer1;
-    question4A.setAttribute('class', 'answer-button')
+    question4A.setAttribute('class', 'answer-buttonA')
     secondaryContentEl.appendChild(question4A);
     
     var question4B = document.createElement("button");
     question4B.textContent = questions[3].answer2;
-    question4B.setAttribute('class', 'answer-button')
+    question4B.setAttribute('class', 'answer-buttonB')
     secondaryContentEl.appendChild(question4B);
     
     var question4C = document.createElement("button");
     question4C.textContent = questions[3].answer3;
-    question4C.setAttribute('class', 'answer-button')
+    question4C.setAttribute('class', 'answer-buttonC')
     secondaryContentEl.appendChild(question4C);
     
     var question4D = document.createElement("button");
     question4D.textContent = questions[2].answer4;
-    question4D.setAttribute('class', 'answer-button')
+    question4D.setAttribute('class', 'answer-buttonD')
     secondaryContentEl.appendChild(question4D);
 
-    for (let i = 0; i < 4; i++) {
-        document.getElementsByClassName("answer-button")
-        [i].addEventListener("click" , () => {
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            questionEl.remove();
-            question5();
-        });
+    function answerIncorrect() {
+        console.log("wrong")
+        question4A.remove();
+        question4B.remove();
+        question4C.remove();
+        question4D.remove();
+        questionEl.remove();
+        question5();
     }
+    
+    function answerCorrect() {
+        console.log("correct")
+        question4A.remove();
+        question4B.remove();
+        question4C.remove();
+        question4D.remove();
+        questionEl.remove();
+        question5();
+    }
+
+    question4A.addEventListener("click",answerIncorrect)
+    question4B.addEventListener("click",answerIncorrect)
+    question4C.addEventListener("click",answerCorrect)
+    question4D.addEventListener("click",answerIncorrect)
+
+    // for (let i = 0; i < 4; i++) {
+    //     document.getElementsByClassName("answer-button")
+    //     [i].addEventListener("click" , () => {
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         questionEl.remove();
+    //         question5();
+    //     });
+    // }
 }
 
 function question5() {
@@ -245,38 +361,63 @@ function question5() {
     //answers to question 5
     var question5A = document.createElement("button");
     question5A.textContent = questions[4].answer1;
-    question5A.setAttribute('class', 'answer-button')
+    question5A.setAttribute('class', 'answer-buttonA')
     secondaryContentEl.appendChild(question5A);
     
     var question5B = document.createElement("button");
     question5B.textContent = questions[4].answer2;
-    question5B.setAttribute('class', 'answer-button')
+    question5B.setAttribute('class', 'answer-buttonB')
     secondaryContentEl.appendChild(question5B);
     
     var question5C = document.createElement("button");
     question5C.textContent = questions[4].answer3;
-    question5C.setAttribute('class', 'answer-button')
+    question5C.setAttribute('class', 'answer-buttonC')
     secondaryContentEl.appendChild(question5C);
     
     var question5D = document.createElement("button");
     question5D.textContent = questions[4].answer4;
-    question5D.setAttribute('class', 'answer-button')
+    question5D.setAttribute('class', 'answer-buttonD')
     secondaryContentEl.appendChild(question5D);
-    // var finalScore = timeRemaining
-    // console.log(finalScore);
 
-    for (let i = 0; i < 4; i++) {
-        document.getElementsByClassName("answer-button")
-        [i].addEventListener("click" , () => {
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            document.querySelectorAll(".answer-button")[0].remove();
-            questionEl.remove();
-            displayResults();
-            timeRemaining = 0
-        });
+    function answerIncorrect() {
+        console.log("wrong")
+        question5A.remove();
+        question5B.remove();
+        question5C.remove();
+        question5D.remove();
+        questionEl.remove();
+        finalScore = timeRemaining;
+        timeRemaining = 1
     }
+    
+    function answerCorrect() {
+        console.log("correct")
+        question5A.remove();
+        question5B.remove();
+        question5C.remove();
+        question5D.remove();
+        questionEl.remove();
+        finalScore = timeRemaining;
+        timeRemaining = 1
+    }
+
+    question5A.addEventListener("click",answerIncorrect)
+    question5B.addEventListener("click",answerIncorrect)
+    question5C.addEventListener("click",answerIncorrect)
+    question5D.addEventListener("click",answerCorrect)
+    
+    // for (let i = 0; i < 4; i++) {
+    //     document.getElementsByClassName("answer-button")
+    //     [i].addEventListener("click" , () => {
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         document.querySelectorAll(".answer-button")[0].remove();
+    //         questionEl.remove();
+    //         finalScore = timeRemaining;
+    //         timeRemaining = 1
+    //     });
+    // }
 }
 
 function displayResults() {
@@ -289,22 +430,22 @@ function displayResults() {
     allDoneEl.setAttribute("class", "align-left")
     scoreContainer.appendChild(allDoneEl);
     var finalScoreDisplayEl = document.createElement("h2")
-    finalScoreDisplayEl.innerHTML = "Your final score is" 
+    finalScoreDisplayEl.innerHTML = "Your final score is " + finalScore
+    scoreContainer.appendChild(finalScoreDisplayEl);
 }
 
 function quizStart() {
-    setInterval(function() {
-    if (timeRemaining >= 1) {
-        timerDurationEl.textContent = timeRemaining;
-        timeRemaining--;
-    } else {
-        timerDurationEl.textContent = '0';
-        clearInterval(timeInterval)
-        displayResults();
-    }
-    }, 1000);
-
+    timeInterval = setInterval(timeToGo, 1000)
     removeStarterElements();
     question1();
+}
+
+function timeToGo() {
+    timeRemaining--;
+    timerDurationEl.textContent = timeRemaining;
+    if (timeRemaining <= 0) {
+        clearInterval(timeInterval);
+        displayResults();
+    }
 }
 startBtnEl.addEventListener("click",quizStart);
