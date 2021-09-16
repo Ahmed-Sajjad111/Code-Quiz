@@ -41,12 +41,23 @@ main {
     text-align: center;
     width: auto;
     margin-top: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     padding-left: 30%;
     padding-right: 30%;
 }
 
-.main-content, .secondary-content, .tertiary-content {
+.bottom-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    width: auto;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.main-content, .secondary-content {
     margin-bottom: 10px;
 }
 
@@ -93,4 +104,15 @@ main {
 
 .answer-button:focus {
     background-color: var(--tertiary-color);
+}
+
+.final-score {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    width: auto;
+    padding-left: 30%;
+    padding-right: 30%;
 }
