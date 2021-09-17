@@ -442,6 +442,8 @@ function displayResults() {
 }
 
 function displayHighScores() {
+    headerScoreContainerEl.remove();
+    headerTimeContainerEl.remove();
     var highScoreChartContainerEl = document.createElement("main");
     highScoreChartContainerEl.setAttribute("class","score-chart");
     footerEl.parentNode.insertBefore(highScoreChartContainerEl, footerEl);
@@ -454,10 +456,14 @@ function displayHighScores() {
     highScoresh1El.setAttribute("class","align-left");
     highScoresh1El.textContent = "High Scores"
     highScoreChartContainerEl.appendChild(highScoresh1El);
-    var highScoresListEl = document.createElement("ul")
+    var highScoresListEl = document.createElement("ol")
     highScoreChartContainerEl.appendChild(highScoresListEl);
     highScoresListEl.setAttribute("id","highScoresList")
-
+    highScoresListEl.innerHTML = highScores
+        .map(score => {
+        return `<li class="high-score-list">${score.name}-${score.score}</li>`;
+    })
+    .join("");
     var btnContainer = document.createElement("div");
     btnContainer.setAttribute("class","btn-container");
     highScoreChartContainerEl.appendChild(btnContainer);
@@ -472,6 +478,10 @@ function displayHighScores() {
     clearHighScoresBtn.setAttribute("class","high-score-btn");
     clearHighScoresBtn.textContent = "Clear"
     btnContainer.appendChild(clearHighScoresBtn);
+    clearHighScoresBtn.addEventListener("click", () => {
+        responseContainerEl.textContent = "High Scores Cleared! Refresh Page."
+        localStorage.clear();
+    })
 }
 
 function quizStart() {
@@ -493,6 +503,6 @@ highScoreEl.addEventListener("click", ()=> {
     headerScoreContainerEl.remove();
     headerTimeContainerEl.remove();
     pageContentEl.remove();
-    tertiaryContentEl.remove();
+    startBtnEl.remove();
     displayHighScores();
 });
