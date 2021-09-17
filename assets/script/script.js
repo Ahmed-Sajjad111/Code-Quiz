@@ -1,6 +1,8 @@
 var bodyEl = document.querySelector(".body");
 var highScoreEl = document.querySelector(".high-score");
 var timerDurationEl = document.querySelector(".timer-duration");
+var headerScoreContainerEl = document.querySelector(".score-container")
+var headerTimeContainerEl = document.querySelector(".time-container")
 var headerEl = document.querySelector(".first-container");
 var footerEl = document.querySelector(".bottom-container");
 var pageContentEl = document.querySelector(".page-content");
@@ -10,13 +12,12 @@ var secondaryContentEl = document.querySelector(".secondary-content");
 var contentEl = document.querySelector(".content");
 var tertiaryContentEl = document.querySelector(".tertiary-content");
 var startBtnEl = document.querySelector(".start");
-var answerFeedback;
-var responseContainer = document.createElement("div")
-footerEl.appendChild(responseContainer)
-var response = document.createElement("h1")
-response.setAttribute("class","response")
-response.textContent = answerFeedback
-responseContainer.appendChild(response);
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+const MAX_HIGH_SCORES = 5;
+var responseText;
+var responseContainerEl = document.createElement("h1");
+responseContainerEl.setAttribute("class","response");
+tertiaryContentEl.appendChild(responseContainerEl);
 var timeRemaining = 90
 var finalScore;
 var timeInterval;
@@ -112,9 +113,13 @@ function question1() {
     question1D.setAttribute('class', 'answer-buttonD')
     question1D.setAttribute('data-correct-answer', "D")
     secondaryContentEl.appendChild(question1D);
-    
+
+    //if incorrect answer is chosen
     function answerIncorrect() {
         console.log("wrong")
+        responseText = "Incorrect!"
+        responseContainerEl.textContent = responseText
+        timeRemaining-=10
         question1A.remove();
         question1B.remove();
         question1C.remove();
@@ -122,9 +127,12 @@ function question1() {
         questionEl.remove();
         question2();
     }
-    
+
+    //if correct answer is chosen
     function answerCorrect() {
         console.log("correct")
+        responseText = "Correct!"
+        responseContainerEl.textContent = responseText
         question1A.remove();
         question1B.remove();
         question1C.remove();
@@ -137,19 +145,6 @@ function question1() {
     question1B.addEventListener("click",answerCorrect)
     question1C.addEventListener("click",answerIncorrect)
     question1D.addEventListener("click",answerIncorrect)
-    
-    // addEventListener("click" , () => {
-    //     // var clickedAnswer = this.document.querySelector(".answer-button")
-    //     // // console.log(clickedAnswer.dataset.correctAnswer)
-    //     // document.querySelector(".answer-button").remove();
-    //     questionEl.remove();
-    //     question2();
-    // });
-
-    // for (let i = 0; i < 4; i++) {
-    //     document.getElementsByClassName("answer-button")
-    //     [i].
-    // }
 }
 
 function question2() {
@@ -180,8 +175,13 @@ function question2() {
     question2D.setAttribute('class', 'answer-buttonD')
     secondaryContentEl.appendChild(question2D);
 
+    //if incorrect answer is chosen
     function answerIncorrect() {
         console.log("wrong")
+        //response to previous answer
+        responseText = "Incorrect!"
+        responseContainerEl.textContent = responseText
+        timeRemaining-=10
         question2A.remove();
         question2B.remove();
         question2C.remove();
@@ -190,8 +190,11 @@ function question2() {
         question3();
     }
     
+    //if correct answer is chosen
     function answerCorrect() {
         console.log("correct")
+        responseText = "Correct!"
+        responseContainerEl.textContent = responseText
         question2A.remove();
         question2B.remove();
         question2C.remove();
@@ -204,18 +207,6 @@ function question2() {
     question2B.addEventListener("click",answerIncorrect)
     question2C.addEventListener("click",answerCorrect)
     question2D.addEventListener("click",answerIncorrect)
-
-    // for (let i = 0; i < 4; i++) {
-    //     document.getElementsByClassName("answer-button")
-    //     [i].addEventListener("click" , () => {
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         questionEl.remove();
-    //         question3();
-    //     });
-    // }
 }
 
 function question3() {
@@ -246,8 +237,12 @@ function question3() {
     question3D.setAttribute('class', 'answer-buttonD')
     secondaryContentEl.appendChild(question3D);
 
+    //if incorrect answer is chosen
     function answerIncorrect() {
         console.log("wrong")
+        responseText = "Incorrect!"
+        responseContainerEl.textContent = responseText
+        timeRemaining-=10
         question3A.remove();
         question3B.remove();
         question3C.remove();
@@ -255,9 +250,12 @@ function question3() {
         questionEl.remove();
         question4();
     }
-    
+
+    //if correct answer is chosen
     function answerCorrect() {
         console.log("correct")
+        responseText = "Correct!"
+        responseContainerEl.textContent = responseText
         question3A.remove();
         question3B.remove();
         question3C.remove();
@@ -270,19 +268,6 @@ function question3() {
     question3B.addEventListener("click",answerIncorrect)
     question3C.addEventListener("click",answerIncorrect)
     question3D.addEventListener("click",answerCorrect)
-
-
-    // for (let i = 0; i < 4; i++) {
-    //     document.getElementsByClassName("answer-button")
-    //     [i].addEventListener("click" , () => {
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         questionEl.remove();
-    //         question4();
-    //     });
-    // }
 }
 
 function question4() {
@@ -313,8 +298,12 @@ function question4() {
     question4D.setAttribute('class', 'answer-buttonD')
     secondaryContentEl.appendChild(question4D);
 
+    //if incorrect answer is chosen
     function answerIncorrect() {
         console.log("wrong")
+        responseText = "Incorrect!"
+        responseContainerEl.textContent = responseText
+        timeRemaining-=10
         question4A.remove();
         question4B.remove();
         question4C.remove();
@@ -322,9 +311,12 @@ function question4() {
         questionEl.remove();
         question5();
     }
-    
+
+    //if correct answer is chosen
     function answerCorrect() {
         console.log("correct")
+        responseText = "Correct!"
+        responseContainerEl.textContent = responseText
         question4A.remove();
         question4B.remove();
         question4C.remove();
@@ -337,18 +329,6 @@ function question4() {
     question4B.addEventListener("click",answerIncorrect)
     question4C.addEventListener("click",answerCorrect)
     question4D.addEventListener("click",answerIncorrect)
-
-    // for (let i = 0; i < 4; i++) {
-    //     document.getElementsByClassName("answer-button")
-    //     [i].addEventListener("click" , () => {
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         questionEl.remove();
-    //         question5();
-    //     });
-    // }
 }
 
 function question5() {
@@ -379,8 +359,12 @@ function question5() {
     question5D.setAttribute('class', 'answer-buttonD')
     secondaryContentEl.appendChild(question5D);
 
+    //if incorrect answer is chosen
     function answerIncorrect() {
         console.log("wrong")
+        responseText = "Incorrect!"
+        responseContainerEl.textContent = responseText
+        timeRemaining-=10
         question5A.remove();
         question5B.remove();
         question5C.remove();
@@ -390,8 +374,11 @@ function question5() {
         timeRemaining = 1
     }
     
+    //if correct answer is chosen
     function answerCorrect() {
         console.log("correct")
+        responseText = "Correct!"
+        responseContainerEl.textContent = responseText
         question5A.remove();
         question5B.remove();
         question5C.remove();
@@ -405,33 +392,86 @@ function question5() {
     question5B.addEventListener("click",answerIncorrect)
     question5C.addEventListener("click",answerIncorrect)
     question5D.addEventListener("click",answerCorrect)
-    
-    // for (let i = 0; i < 4; i++) {
-    //     document.getElementsByClassName("answer-button")
-    //     [i].addEventListener("click" , () => {
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         document.querySelectorAll(".answer-button")[0].remove();
-    //         questionEl.remove();
-    //         finalScore = timeRemaining;
-    //         timeRemaining = 1
-    //     });
-    // }
 }
 
 function displayResults() {
     document.querySelector(".page-content").remove();
-    var scoreContainer = document.createElement("div");
+    //create workspace for high score input
+    var scoreContainer = document.createElement("main");
     scoreContainer.setAttribute('class', 'final-score');
     footerEl.parentNode.insertBefore(scoreContainer, footerEl);
     var allDoneEl = document.createElement("h1");
     allDoneEl.textContent = "All Done!"
-    allDoneEl.setAttribute("class", "align-left")
+    allDoneEl.setAttribute("class", "align-left");
     scoreContainer.appendChild(allDoneEl);
-    var finalScoreDisplayEl = document.createElement("h2")
+    var finalScoreDisplayEl = document.createElement("h2");
+    finalScoreDisplayEl.setAttribute("class", "align-left");
     finalScoreDisplayEl.innerHTML = "Your final score is " + finalScore
     scoreContainer.appendChild(finalScoreDisplayEl);
+    var highScoreContainerEl = document.createElement("div");
+    highScoreContainerEl.setAttribute("class", "high-score-container");
+    scoreContainer.appendChild(highScoreContainerEl)
+    var enterInitialsEl = document.createElement("p");
+    enterInitialsEl.textContent = "Enter Initials:"
+    highScoreContainerEl.appendChild(enterInitialsEl);
+    var inputBox = document.createElement("input");
+    inputBox.setAttribute("class", "input-name")
+    inputBox.setAttribute("id", "name");
+    highScoreContainerEl.appendChild(inputBox);
+    var submitBtn = document.createElement("button");
+    submitBtn.textContent = "Submit"
+    submitBtn.setAttribute("class", "start")
+    highScoreContainerEl.appendChild(submitBtn);
+
+    //event listener to display high scores
+    submitBtn.addEventListener("click", () => {
+        if(inputBox.value.length == 2) {
+            const mostRecentScore = 
+            {
+                score: finalScore,
+                name: inputBox.value
+            }
+            highScores.push(mostRecentScore)
+            console.log(highScores)
+            scoreContainer.remove();
+            displayHighScores();
+        } else {
+            window.alert("Please only enter your initials")
+        }
+    });
+}
+
+function displayHighScores() {
+    var highScoreChartContainerEl = document.createElement("main");
+    highScoreChartContainerEl.setAttribute("class","score-chart");
+    footerEl.parentNode.insertBefore(highScoreChartContainerEl, footerEl);
+
+    highScores.sort( (a,b) => b.score - a.score)
+    highScores.splice(5);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+
+    var highScoresh1El = document.createElement("h1");
+    highScoresh1El.setAttribute("class","align-left");
+    highScoresh1El.textContent = "High Scores"
+    highScoreChartContainerEl.appendChild(highScoresh1El);
+    var highScoresListEl = document.createElement("ul")
+    highScoreChartContainerEl.appendChild(highScoresListEl);
+    highScoresListEl.setAttribute("id","highScoresList")
+
+    var btnContainer = document.createElement("div");
+    btnContainer.setAttribute("class","btn-container");
+    highScoreChartContainerEl.appendChild(btnContainer);
+    var goBackBtn = document.createElement("button");
+    goBackBtn.setAttribute("class","high-score-btn");
+    goBackBtn.textContent = "Go Back"
+    btnContainer.appendChild(goBackBtn);
+    goBackBtn.addEventListener("click", () => {
+        window.location.assign("/");
+    })
+    var clearHighScoresBtn = document.createElement("button");
+    clearHighScoresBtn.setAttribute("class","high-score-btn");
+    clearHighScoresBtn.textContent = "Clear"
+    btnContainer.appendChild(clearHighScoresBtn);
 }
 
 function quizStart() {
@@ -449,3 +489,10 @@ function timeToGo() {
     }
 }
 startBtnEl.addEventListener("click",quizStart);
+highScoreEl.addEventListener("click", ()=> {
+    headerScoreContainerEl.remove();
+    headerTimeContainerEl.remove();
+    pageContentEl.remove();
+    tertiaryContentEl.remove();
+    displayHighScores();
+});
