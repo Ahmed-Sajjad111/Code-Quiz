@@ -472,7 +472,7 @@ function displayHighScores() {
     goBackBtn.textContent = "Go Back"
     btnContainer.appendChild(goBackBtn);
     goBackBtn.addEventListener("click", () => {
-        window.location.assign("/");
+        window.location.assign("");
     })
     var clearHighScoresBtn = document.createElement("button");
     clearHighScoresBtn.setAttribute("class","high-score-btn");
